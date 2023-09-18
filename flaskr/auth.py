@@ -15,6 +15,7 @@ def register():
         username = request.form['username']
         password = request.form['password']
         veriCont = request.form['veriCont']
+        email = request.form['email']
         db = get_db()
         error = None
 
@@ -24,7 +25,8 @@ def register():
             error = 'La contraseña es requerida.'
         elif veriCont != password:
             error = 'Las contraseñas no coinciden.'
-
+        elif not email:
+            error = 'El gmail es requerido.'
         if error is None:
             try:
                 db.execute(
